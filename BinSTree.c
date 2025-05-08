@@ -52,3 +52,38 @@ void PostOrder (BinTree P) {
         printf("%c ", GetAkar(P));
     }
 } /* PostOrder */
+
+/*Search*/
+
+boolean Search (BinTree P, infotype X) {
+    /* Mencari X pada BinTree P */
+    /* Mengirimkan true jika ada node dari P yang bernilai X */
+    boolean found = false;
+    if (P != Nil) {
+        if (GetAkar(P) == X) {
+            found = true;
+        } else {
+            found = Search(GetLeft(P), X);
+            if (!found) {
+                found = Search(GetRight(P), X);
+            }
+        }
+    }
+    return found;
+} /* Search */
+
+
+/*Fungsi Lain*/
+int nbElmt (BinTree P) {
+    /* Mengirimkan banyak elemen (node) pohon biner P */
+    int count = 0;
+    if (P != Nil) {
+        count = 1 + nbElmt(GetLeft(P)) + nbElmt(GetRight(P));
+    }
+    return count;
+} /* nbElmt */
+
+int nbDaun (BinTree P) {
+    /* Mengirimkan banyak daun (node) pohon biner P */
+    
+} /* nbDaun */
