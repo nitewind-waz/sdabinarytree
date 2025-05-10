@@ -33,6 +33,7 @@ int main() {
                 } else {
                     PrintTree(Tree, 2);
                 }
+                getchar();getchar();
                 break;
             case 3:
                 printf("PreOrder: ");
