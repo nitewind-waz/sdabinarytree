@@ -1,22 +1,25 @@
 
 #include "BinSTree.h"
+#include "Convertor.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 int main() {
     /* Kamus Lokal */
-    BinTree Tree;
+    BinTree Tree = BuildMorseTree();
+    List Test;
     int selector;
     char input, search1, search2;
 
     
     /* Program */
-    MakeTree('-', Nil, Nil, &Tree);
-    while (selector != 11 ){
+    CreateList(&Test);
+    
+    while (selector != 12 ){
         printf("\n===== MENU BINARY TREE =====\n");
         printf("1. Insert node\n2. Print Tree\n3. Transversal PreOrder\n4. Transversal InOrder\n5. Transversal PostOrder\n6. Transversal LevelOrder\n");
-        printf("7. Search Node Tree\n8. Jumlah Daun / Leaf\n9. Mencari Kedalaman Node Tree\n10. Membandingkan 2 Node Tree\n11. Exit\n");
+        printf("7. Search Node Tree\n8. Jumlah Daun / Leaf\n9. Mencari Kedalaman Node Tree\n10. Membandingkan 2 Node Tree\n11. Char to Morse\n12. Exit\n");
         printf("Pilih menu: ");
         scanf(" %d", &selector);
 
@@ -93,7 +96,23 @@ int main() {
                 }
                 break;
             case 11:
-                break;
+                char yangdikonvert[100];
+                printf("Masukkan string yang mau dikonvert: ");
+                scanf("%s", yangdikonvert);  // baca string dari input
+
+                for (int i = 0; yangdikonvert[i] != '\0'; i++) {
+                    Test.first = NULL; // reset list sebelum mengisi morse baru
+
+                    if (StringToMorse(Tree, yangdikonvert[i], &Test)) {
+                        PrintList(Test);
+                        printf(" ");
+                    } else {
+                        printf("Huruf '%c' tidak ditemukan di pohon.\n", yangdikonvert[i]);
+                    }
+                }
+                getchar(); getchar();
+            break;
+                
             default:
                 printf("Menu tidak valid.\n");
             return 0;

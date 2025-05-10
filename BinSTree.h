@@ -179,5 +179,6 @@ void DeAlokasi (address P);
 
 
 void SistemInput (BinTree *P);
+BinTree BuildMorseTree();
 
 #endif

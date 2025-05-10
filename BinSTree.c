@@ -33,16 +33,6 @@ BinTree GetRight (BinTree P) {
 
 /*Konstruktor*/
 
-address Alokasi (infotype X) {
-    address P = (address) malloc(sizeof(Node));
-    if (P != Nil) {
-        Info(P) = X;
-        Left(P) = Nil;
-        Right(P) = Nil;
-    }
-    return P;
-} 
-
 BinTree Tree (infotype Akar, BinTree L, BinTree R) {
     address P = Alokasi(Akar);
     if (P != Nil) {
@@ -230,4 +220,45 @@ void SistemInput (BinTree *P){
         }
     }
 }
+
+BinTree BuildMorseTree() {
+    // Level 5
+    BinTree H = Tree('H', Nil, Nil);
+    BinTree V = Tree('V', Nil, Nil);
+    BinTree F = Tree('F', Nil, Nil);
+    BinTree L = Tree('L', Nil, Nil);
+    BinTree P = Tree('P', Nil, Nil);
+    BinTree J = Tree('J', Nil, Nil);
+    BinTree B = Tree('B', Nil, Nil);
+    BinTree X = Tree('X', Nil, Nil);
+    BinTree C = Tree('C', Nil, Nil);
+    BinTree Y = Tree('Y', Nil, Nil);
+    BinTree Z = Tree('Z', Nil, Nil);
+    BinTree Q = Tree('Q', Nil, Nil);
+
+    // Level 4
+    BinTree S = Tree('S', H, V);
+    BinTree U = Tree('U', F, Nil);
+    BinTree R = Tree('R', L, Nil);
+    BinTree W = Tree('W', P, J);
+    BinTree D = Tree('D', B, X);
+    BinTree K = Tree('K', C, Y);
+    BinTree G = Tree('G', Z, Q);
+    BinTree O = Tree('O', Nil, Nil);
+
+    // Level 3
+    BinTree I = Tree('I', S, U);
+    BinTree A = Tree('A', R, W);
+    BinTree N = Tree('N', D, K);
+    BinTree M = Tree('M', G, O);
+
+    // Level 2
+    BinTree E = Tree('E', I, A);
+    BinTree T = Tree('T', N, M);
+
+    // Root
+    return Tree('\0', E, T);
+}
+
+
 

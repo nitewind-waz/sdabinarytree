@@ -1,5 +1,6 @@
 #include "binstree.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 typedef struct Node *address2;
 typedef struct Node {
@@ -19,7 +20,8 @@ void CreateList (List *L);
 void InsVFirst (List *L, char X);
 /* I.S. L terdefinisi, X terdefinisi */
 
-void StringToMorse (BinTree P, char oneofinput, List * L);
+boolean StringToMorse (BinTree P, char target, List * L);
 
 void SearchInTraversal (BinTree P, char oneofinput);
 
+void PrintList (List L);
