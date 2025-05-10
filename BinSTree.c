@@ -160,13 +160,22 @@ void SistemInput (BinTree *P){
                 switch (selector) {
                     case 1:
                         printf("Masukkan info: "); scanf("%c", &input);
-                        (*P)->right->info = input;
+                        if ((*P)->right == NULL) {
+                            MakeTree (input, NULL, NULL, P);
+                        } else {
+                            (*P)->right->info = input;
+                        }
                         break;
                     case 2:
                         printf("Masukkan info: "); scanf("%c", &input);
-                        (*P)->left->info = input;
+                        if ((*P)->right == NULL) {
+                            MakeTree (input, NULL, NULL, P);
+                        } else {
+                            (*P)->left->info = input;
+                        }
                         break;
-                    case 3 
+                    case 3:
+                        break;
                 }
             }
         }
