@@ -25,3 +25,5 @@ boolean StringToMorse (BinTree P, char target, List * L);
 void SearchInTraversal (BinTree P, char oneofinput);
 
 void PrintList (List L);
+
+char MorseToChar(BinTree Tree, const char *morse);

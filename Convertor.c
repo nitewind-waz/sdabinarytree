@@ -48,3 +48,22 @@ void PrintList(List L) {
         P = P->next;
     }
 }
+
+char MorseToChar(BinTree Tree, const char *morse) {
+    BinTree current = Tree;
+    int i = 0;
+    while(morse[i] != '\0'){
+        if (morse[i] == '.') {
+            current = current->left;
+        } else if (morse[i] == '-') {
+            current = current->right;
+        } else {
+            return '?'; 
+        }
+        if (current == Nil) {
+            return '?'; 
+        }
+        i++;
+    }
+    return current->info;
+}
