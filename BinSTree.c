@@ -17,34 +17,6 @@ address Alokasi (infotype X) {
     
     return P;
 }
-BinTree Tree (infotype Akar, BinTree L, BinTree R) {
-    address P = Alokasi(Akar);
-    if (P != Nil)
-    {
-        P->info = Akar;
-        P->left = L;
-        P->right = R;
-    } else {
-        printf("Tidak bisa membuat tree.\n");
-    }
-    
-}
-void MakeTree (infotype Akar, BinTree L, BinTree R, BinTree *P) {
-    *P = Alokasi(Akar);
-    if (*P != Nil)
-    {
-        (*P)->info = Akar;
-        (*P)->left = L;
-        (*P)->right = R;
-    } else {
-        printf("Tidak bisa membuat tree.\n");
-    }
-}
-
-// Predikat Penting //
-boolean IsEmpty (BinTree P) {
-    return (P == Nil);
-}
 
 // Transversal //
 void PreOrder (BinTree P) {
@@ -52,6 +24,82 @@ void PreOrder (BinTree P) {
         printf("%c ", P->info);       
         PreOrder(P->left);            
         PreOrder(P->right);           
+=======
+#include <stdlib.h>
+#include <stdio.h>
+
+/*Primitf*/
+
+infotype GetAkar (BinTree P) {
+    /* Mengirimkan informasi yang tersimpan di akar dari pohon Biner yg tdk kosong*/
+    return Info(P);
+} 
+
+BinTree GetLeft (BinTree P) {
+    /* Mengirimkan anak kiri pohon biner P yang TIDAK kosong */
+    return Left(P);
+} 
+
+BinTree GetRight (BinTree P) {
+    return Right(P);
+}
+
+/*Konstruktor*/
+
+address Alokasi (infotype X) {
+    address P = (address) malloc(sizeof(Node));
+    if (P != Nil) {
+        Info(P) = X;
+        Left(P) = Nil;
+        Right(P) = Nil;
+    }
+    return P;
+} 
+
+BinTree Tree (infotype Akar, BinTree L, BinTree R) {
+   
+    address P = Alokasi(Akar);
+    if (P != Nil) {
+        Left(P) = L;
+        Right(P) = R;
+    }
+    return P;
+} /* Tree */
+void MakeTree (infotype Akar, BinTree L, BinTree R, BinTree *P) {
+    
+    address Q = Alokasi(Akar);
+    if (Q != Nil) {
+        Left(Q) = L;
+        Right(Q) = R;
+        *P = Q;
+    } else {
+        *P = Nil;
+    }
+} /* MakeTree */
+
+
+
+/** Predikat Penting */
+boolean IsUnerLeft (BinTree P) {
+   
+    return ((P != Nil) && (Right(P) == Nil));
+} /* IsUnerLeft */
+
+boolean IsUnerRight (BinTree P) {
+   
+    return ((P != Nil) && (Left(P) == Nil));
+} /* IsUnerRight */
+
+boolean IsBiner (BinTree P) {
+    
+    return ((P != Nil) && (Left(P) != Nil) && (Right(P) != Nil));
+} 
+
+boolean IsEmpty (BinTree P) {
+    return (P == Nil);
+}
+
+
     }
 }
 
@@ -60,8 +108,9 @@ void InOrder (BinTree P) {
         InOrder(GetLeft(P));
         printf("%c ", GetAkar(P));
         InOrder(GetRight(P));
-    }
+
 }
+
 
 void PostOrder (BinTree P) {
     if (P != Nil) {
@@ -69,6 +118,7 @@ void PostOrder (BinTree P) {
         PostOrder(GetRight(P));
         printf("%c ", GetAkar(P));
     }
+
 }
 
 void PrintTree (BinTree P, int h) {
@@ -81,7 +131,6 @@ void PrintTree (BinTree P, int h) {
         PrintTree(Left(P),h+1);
     }
 }
-/*Search*/
 
 boolean Search (BinTree P, infotype X) {
     /* Mencari X pada BinTree P */
@@ -98,7 +147,7 @@ boolean Search (BinTree P, infotype X) {
         }
     }
     return found;
-} /* Search */
+} 
 
 
 /*Fungsi Lain*/
@@ -109,10 +158,9 @@ int nbElmt (BinTree P) {
         count = 1 + nbElmt(GetLeft(P)) + nbElmt(GetRight(P));
     }
     return count;
-} /* nbElmt */
+} 
 
 int nbDaun (BinTree P) {
-    /* Mengirimkan banyak daun (node) pohon biner P */
     if (P == Nil)
         return 0;
     if (Left(P) == Nil && Right(P) == Nil)
@@ -137,6 +185,7 @@ int Level (BinTree P, infotype X) {
     }
     return 0;
 }
+
 
 void SistemInput (BinTree *P){
     char root, input, arah;
@@ -196,3 +245,4 @@ void SistemInput (BinTree *P){
         }
     }
 }
+

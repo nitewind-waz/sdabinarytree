@@ -175,4 +175,7 @@ void DeAlokasi (address P);
 /* FS : P dikembalikan ke sistem */
 /* Melakukan dealokasi / pengembalian address P ke system */
 
+
+void SistemInput (BinTree *P);
+
 #endif

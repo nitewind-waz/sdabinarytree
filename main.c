@@ -1,3 +1,4 @@
+
 #include "BinSTree.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -18,12 +19,13 @@ int main() {
         printf("7. Search Node Tree\n8. Jumlah Daun / Leaf\n9. Mencari Kedalaman Node Tree\n10. Membandingkan 2 Node Tree\n11. Exit\n");
         printf("Pilih menu: ");
         scanf(" %d", &selector);
+
         switch (selector) {
             case 1:
                 SistemInput (&Tree);
                 break;
             case 2:
-                if (IsEmpty(Tree)) {
+              if (IsEmpty(Tree)) {
                     printf("Tree masih kosong.\n");
                 } else {
                     PrintTree(Tree, 2);
@@ -97,4 +99,7 @@ int main() {
             return 0;
         }
     }
+
+    return 0;
+
 }
