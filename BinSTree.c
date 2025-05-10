@@ -1,7 +1,5 @@
 #include "BinSTree.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+
 
 // Konstruktor //
 address Alokasi (infotype X) {
@@ -18,25 +16,14 @@ address Alokasi (infotype X) {
     return P;
 }
 
-// Transversal //
-void PreOrder (BinTree P) {
-    if (P != NULL) {
-        printf("%c ", P->info);       
-        PreOrder(P->left);            
-        PreOrder(P->right);           
-=======
-#include <stdlib.h>
-#include <stdio.h>
 
-/*Primitf*/
+/*Primitif*/
 
 infotype GetAkar (BinTree P) {
-    /* Mengirimkan informasi yang tersimpan di akar dari pohon Biner yg tdk kosong*/
     return Info(P);
-} 
+}
 
 BinTree GetLeft (BinTree P) {
-    /* Mengirimkan anak kiri pohon biner P yang TIDAK kosong */
     return Left(P);
 } 
 
@@ -57,7 +44,6 @@ address Alokasi (infotype X) {
 } 
 
 BinTree Tree (infotype Akar, BinTree L, BinTree R) {
-   
     address P = Alokasi(Akar);
     if (P != Nil) {
         Left(P) = L;
@@ -75,7 +61,7 @@ void MakeTree (infotype Akar, BinTree L, BinTree R, BinTree *P) {
     } else {
         *P = Nil;
     }
-} /* MakeTree */
+}
 
 
 
@@ -99,7 +85,12 @@ boolean IsEmpty (BinTree P) {
     return (P == Nil);
 }
 
-
+// Transversal //
+void PreOrder (BinTree P) {
+    if (P != NULL) {
+        printf("%c ", P->info);       
+        PreOrder(P->left);            
+        PreOrder(P->right);           
     }
 }
 
@@ -108,9 +99,8 @@ void InOrder (BinTree P) {
         InOrder(GetLeft(P));
         printf("%c ", GetAkar(P));
         InOrder(GetRight(P));
-
+    }
 }
-
 
 void PostOrder (BinTree P) {
     if (P != Nil) {
@@ -118,7 +108,6 @@ void PostOrder (BinTree P) {
         PostOrder(GetRight(P));
         printf("%c ", GetAkar(P));
     }
-
 }
 
 void PrintTree (BinTree P, int h) {
@@ -133,8 +122,6 @@ void PrintTree (BinTree P, int h) {
 }
 
 boolean Search (BinTree P, infotype X) {
-    /* Mencari X pada BinTree P */
-    /* Mengirimkan true jika ada node dari P yang bernilai X */
     boolean found = false;
     if (P != Nil) {
         if (GetAkar(P) == X) {
@@ -152,7 +139,6 @@ boolean Search (BinTree P, infotype X) {
 
 /*Fungsi Lain*/
 int nbElmt (BinTree P) {
-    /* Mengirimkan banyak elemen (node) pohon biner P */
     int count = 0;
     if (P != Nil) {
         count = 1 + nbElmt(GetLeft(P)) + nbElmt(GetRight(P));
