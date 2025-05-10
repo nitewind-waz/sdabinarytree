@@ -4,56 +4,97 @@
 #include <string.h>
 
 int main() {
-    char A = 'A';
-    char B = 'B';
-    char C = 'C';
+    /* Kamus Lokal */
+    BinTree Tree;
+    int selector;
+    char input, search1, search2;
 
-    // Modul Tree //
-    address p = Tree(C, Nil, Nil);
-    address q = Tree(B, Nil, Nil);
-    BinTree tree1 = Tree(A, q, p);
-    printf("%c ", tree1->info);           
-    printf("%c ", tree1->left->info);     
-    printf("%c \n\n", tree1->right->info);    
-
-    // Modul MakeTree //
-    BinTree T, L, R;
-    MakeTree('B', Nil, Nil, &L);
-    MakeTree('C', Nil, Nil, &R);
-    MakeTree('A', L, R, &T);
-    printf("%c ", T->info);       
-    printf("%c ", T->left->info); 
-    printf("%c \n", T->right->info);
-
-    // Implementasi (penggabungan keduanya) //
-    BinTree akar, kiri, kanan;
-    MakeTree(B, Nil, Nil, &kiri);
-    MakeTree(C, Nil, Nil, &kanan);
-    akar = Tree(A, kiri, kanan);
-    printf("\n %c \n", akar->info);
-    printf("/ \\");;
-    printf("\n%c ", akar->left->info);
-    printf("%c \n", akar->right->info);
     
-    // Implementasi transversal //
-    PreOrder(tree1);
-    printf("\n");
-    InOrder(T);
-    printf("\n");
-    PostOrder(akar);
-    printf("\n");
-
-    // Lain-lain //
-    if (Search(tree1, A))
-    {
-        printf("Ada\n");
-    } else {
-        printf("Tidak ada\n");
+    /* Program */
+    MakeTree('-', Nil, Nil, &Tree);
+    while (selector != 11 ){
+        printf("\n===== MENU BINARY TREE =====\n");
+        printf("1. Insert node\n2. Print Tree\n3. Transversal PreOrder\n4. Transversal InOrder\n5. Transversal PostOrder\n6. Transversal LevelOrder\n");
+        printf("7. Search Node Tree\n8. Jumlah Daun / Leaf\n9. Mencari Kedalaman Node Tree\n10. Membandingkan 2 Node Tree\n11. Exit\n");
+        printf("Pilih menu: ");
+        scanf(" %d", &selector);
+        switch (selector) {
+            case 1:
+                SistemInput (&Tree);
+                break;
+            case 2:
+                if (IsEmpty(Tree)) {
+                    printf("Tree masih kosong.\n");
+                } else {
+                    PrintTree(Tree, 2);
+                }
+                break;
+            case 3:
+                printf("PreOrder: ");
+                PreOrder(Tree);
+                printf("\n");
+                break;
+            case 4:
+                printf("InOrder: ");
+                InOrder(Tree);
+                printf("\n");
+                break;
+            case 5:
+                printf("PostOrder: ");
+                PostOrder(Tree);
+                printf("\n");
+                break;
+            case 6:
+                if (IsEmpty(Tree)) {
+                    printf("Tree masih kosong.\n");
+                } else {
+                    // Level Order //
+                }
+                break;
+            case 7:
+                printf("Masukkan info node yang dicari: ");
+                scanf(" %c", &input);
+                if (Search(Tree, input))
+                    printf("Node '%c' ditemukan.\n", input);
+                else
+                    printf("Node '%c' tidak ditemukan.\n", input);
+                break;
+            case 8:
+                printf("Jumlah daun (leaf): %d\n", nbDaun(Tree));
+                break;
+            case 9:
+                printf("Masukkan node yang ingin dicari kedalamannya: ");
+                scanf(" %c", &input);
+                if (Search(Tree, input)) {
+                    int lvl = Level(Tree, input);
+                    printf("Node '%c' berada di level %d\n", input, lvl);
+                } else {
+                    printf("Node '%c' tidak ditemukan.\n", input);
+                }
+                break;
+                case 10:
+                printf("Masukkan node pertama: ");
+                scanf(" %c", &search1);
+                printf("Masukkan node kedua: ");
+                scanf(" %c", &search2);
+                if (!Search(Tree, search1) || !Search(Tree, search2)) {
+                    printf("Salah satu atau kedua node tidak ditemukan.\n");
+                } else {
+                    int l1 = Level(Tree, search1);
+                    int l2 = Level(Tree, search2);
+                    if (l1 < l2)
+                        printf("Node '%c' lebih dekat ke akar daripada '%c'\n", search1, search2);
+                    else if (l2 < l1)
+                        printf("Node '%c' lebih dekat ke akar daripada '%c'\n", search2, search1);
+                    else
+                        printf("Kedua node berada di level yang sama (%d)\n", l1);
+                }
+                break;
+            case 11:
+                break;
+            default:
+                printf("Menu tidak valid.\n");
+            return 0;
+        }
     }
-    printf("%d", Level(akar, C));
-
-    free(tree1);
-    free(T);
-    free(akar);
-    return 0;
 }
