@@ -135,49 +135,60 @@ int nbDaun (BinTree P) {
 } /* nbDaun */
 
 void SistemInput (BinTree *P){
-    int selector;
-    char root, input;
+    char root, input, arah;
     boolean broot;
-    if (GetLeft(P) == Nil && GetRight(P) == Nil){
-        printf("L/R?"); scanf("%c", input);
-        if (input = 'l'){
-            printf("Masukkan info dari left: "); scanf("%c", &input);
+
+    for (;;) {
+        if ((*P) == Nil) {
+            // Jika pohon masih kosong, buat root
+            printf("Masukkan info untuk root: ");
+            scanf(" %c", &input);
+            *P = Tree(input, Nil, Nil);
+            continue; // kembali ke awal loop untuk input berikutnya
         }
-        else if (input = 'r') {
-            printf("Masukkan info dari right: "); scanf("%c", &input);
+
+        printf("\nMasukkan node yang ingin ditambahkan anaknya (atau ketik 0 untuk keluar): ");
+        scanf(" %c", &root);
+
+        if (root == '0') {
+            printf("Selesai menginput.\n");
+            break;
         }
-        else {
-            printf("inputan tidak valid\n");
-            return;
-        }
-    } 
-    else {
-        printf("Masukkan root yang akan diinput r/l nya! ");scanf("%c", &root);
-        broot =  Search(P, root);
+
+        broot = Search(*P, root);
         if (broot == true) {
-            for (;;) {
-                printf("1. Kanan\n2. Kiri\n3. Ga Jadi\n-->" ); scanf("%d", &selector);
-                switch (selector) {
-                    case 1:
-                        printf("Masukkan info: "); scanf("%c", &input);
-                        if ((*P)->right == NULL) {
-                            MakeTree (input, NULL, NULL, P);
-                        } else {
-                            (*P)->right->info = input;
-                        }
-                        break;
-                    case 2:
-                        printf("Masukkan info: "); scanf("%c", &input);
-                        if ((*P)->right == NULL) {
-                            MakeTree (input, NULL, NULL, P);
-                        } else {
-                            (*P)->left->info = input;
-                        }
-                        break;
-                    case 3:
-                        break;
-                }
+            BinTree curr = *P;
+
+            while (curr != Nil && GetAkar(curr) != root) {
+                if (Search(GetLeft(curr), root))
+                    curr = GetLeft(curr);
+                else
+                    curr = GetRight(curr);
             }
+
+            printf("Tambah anak ke kiri (l) atau kanan (r)? ");
+            scanf(" %c", &arah);
+
+            printf("Masukkan info anak baru: ");
+            scanf(" %c", &input);
+
+            if (arah == 'l') {
+                if (Left(curr) == Nil) {
+                    Left(curr) = Tree(input, Nil, Nil);
+                } else {
+                    printf("Node '%c' sudah punya anak kiri.\n", root);
+                }
+            } else if (arah == 'r') {
+                if (Right(curr) == Nil) {
+                    Right(curr) = Tree(input, Nil, Nil);
+                } else {
+                    printf("Node '%c' sudah punya anak kanan.\n", root);
+                }
+            } else {
+                printf("Input arah tidak valid.\n");
+            }
+        } else {
+            printf("Node '%c' tidak ditemukan di pohon.\n", root);
         }
     }
 }

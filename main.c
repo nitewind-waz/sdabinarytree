@@ -3,20 +3,27 @@
 
 int main(){
     /* Kamus Lokal */
-    BinTree P;
-    List L;
-    char oneofinput;
+    BinTree Tree;
+    int selector;
     
     /* Program */
-    CreateList(&L);
-    BuildTree(&P);
-    
-    printf("Masukkan karakter yang ingin dicari: ");
-    scanf("%c", &oneofinput);
-    
-    StringToMorse(P, oneofinput, &L);
-    
-    
-    
+    MakeTree('-', Nil, Nil, &Tree);
+    for (;;) {
+        system("cls");
+        printf("1. Input datan\n2. Preorder\n3. Selesai\n====>");scanf("%d", &selector);
+        switch (selector) {
+            case 1:
+                SistemInput (&Tree);
+                break;
+            case 2:
+                PreOrder(Tree);
+                getchar();getchar();
+                break;
+            case 3:
+            break;
+            return 0;
+        }        
+    }
+
     return 0;
 }
