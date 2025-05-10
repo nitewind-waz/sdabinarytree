@@ -26,13 +26,34 @@ int main() {
     printf("%c \n", T->right->info);
 
     // Implementasi (penggabungan keduanya) //
-    BinTree akar, pki, liberal;
-    MakeTree(B, Nil, Nil, &pki);
-    MakeTree(C, Nil, Nil, &liberal);
-    akar = Tree(A, pki, liberal);
+    BinTree akar, kiri, kanan;
+    MakeTree(B, Nil, Nil, &kiri);
+    MakeTree(C, Nil, Nil, &kanan);
+    akar = Tree(A, kiri, kanan);
     printf("\n %c \n", akar->info);
     printf("/ \\");;
     printf("\n%c ", akar->left->info);
-    printf("%c ", akar->right->info);    
+    printf("%c \n", akar->right->info);
+    
+    // Implementasi transversal //
+    PreOrder(tree1);
+    printf("\n");
+    InOrder(T);
+    printf("\n");
+    PostOrder(akar);
+    printf("\n");
+
+    // Lain-lain //
+    if (Search(tree1, A))
+    {
+        printf("Ada\n");
+    } else {
+        printf("Tidak ada\n");
+    }
+    printf("%d", Level(akar, C));
+
+    free(tree1);
+    free(T);
+    free(akar);
     return 0;
 }
