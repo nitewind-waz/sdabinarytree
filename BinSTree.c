@@ -1,4 +1,30 @@
 #include "BinSTree.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Konstruktor //
+address Alokasi (infotype X) {
+    address P = (Node *)malloc(sizeof(Node));
+    if (P != NULL)
+    {
+        P->info = X;
+        P->left = Nil;
+        P->right = Nil;
+    } else {
+        printf("ALokasi gagal.");
+    }
+    
+    return P;
+}
+
+// Transversal //
+void PreOrder (BinTree P) {
+    if (P != NULL) {
+        printf("%c ", P->info);       
+        PreOrder(P->left);            
+        PreOrder(P->right);           
+=======
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -67,19 +93,13 @@ boolean IsUnerRight (BinTree P) {
 boolean IsBiner (BinTree P) {
     
     return ((P != Nil) && (Left(P) != Nil) && (Right(P) != Nil));
-} /* IsBiner */
+} 
 
 boolean IsEmpty (BinTree P) {
     return (P == Nil);
-} /* IsEmpty */
+}
 
-/*Traversal*/
 
-void PreOrder (BinTree P) {
-    if (P != Nil) {
-        printf("%c ", GetAkar(P));
-        PreOrder(GetLeft(P));
-        PreOrder(GetRight(P));
     }
 }
 
@@ -88,8 +108,9 @@ void InOrder (BinTree P) {
         InOrder(GetLeft(P));
         printf("%c ", GetAkar(P));
         InOrder(GetRight(P));
-    }
-} /* InOrder */
+
+}
+
 
 void PostOrder (BinTree P) {
     if (P != Nil) {
@@ -97,9 +118,19 @@ void PostOrder (BinTree P) {
         PostOrder(GetRight(P));
         printf("%c ", GetAkar(P));
     }
-} /* PostOrder */
 
-/*Search*/
+}
+
+void PrintTree (BinTree P, int h) {
+    if (P != Nil) {
+        PrintTree(Right(P), h + 1);
+        for (int i = 0; i < h; i++) {
+            printf("   ");  
+        }
+        printf("%c\n", Info(P));
+        PrintTree(Left(P),h+1);
+    }
+}
 
 boolean Search (BinTree P, infotype X) {
     /* Mencari X pada BinTree P */
@@ -116,7 +147,7 @@ boolean Search (BinTree P, infotype X) {
         }
     }
     return found;
-} /* Search */
+} 
 
 
 /*Fungsi Lain*/
@@ -127,12 +158,34 @@ int nbElmt (BinTree P) {
         count = 1 + nbElmt(GetLeft(P)) + nbElmt(GetRight(P));
     }
     return count;
-} /* nbElmt */
+} 
 
 int nbDaun (BinTree P) {
-    /* Mengirimkan banyak daun (node) pohon biner P */
-    
+    if (P == Nil)
+        return 0;
+    if (Left(P) == Nil && Right(P) == Nil)
+        return 1;
+    return nbDaun(Left(P)) + nbDaun(Right(P));
 } /* nbDaun */
+
+int Level (BinTree P, infotype X) {
+    if (P == Nil) {
+        return 0;
+    }
+    if (Info(P) == X) {
+        return 1;
+    }
+    int leftLevel = Level(Left(P), X);
+    if (leftLevel != 0) {
+        return leftLevel + 1;
+    }
+    int rightLevel = Level(Right(P), X);
+    if (rightLevel != 0) {
+        return rightLevel + 1;
+    }
+    return 0;
+}
+
 
 void SistemInput (BinTree *P){
     char root, input, arah;
@@ -192,3 +245,4 @@ void SistemInput (BinTree *P){
         }
     }
 }
+
