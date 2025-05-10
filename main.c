@@ -9,7 +9,7 @@ int main() {
     /* Kamus Lokal */
     BinTree Tree = BuildMorseTree();
     List Test;
-    int selector;
+    int selector, decision;
     char input, search1, search2;
 
     
@@ -26,36 +26,61 @@ int main() {
         switch (selector) {
             case 1:
                 SistemInput (&Tree);
+                            printf("\n1.kembali\nMasukkan Pilihan : ");
+            scanf("%d", &decision);
+            if(decision == 1){
                 break;
+            }
             case 2:
               if (IsEmpty(Tree)) {
                     printf("Tree masih kosong.\n");
                 } else {
-                    PrintTree(Tree, 2);
+                    PrintTree(Tree, 0);
+
                 }
+                            printf("\n1.kembali\nMasukkan Pilihan : ");
+            scanf("%d", &decision);
+            if(decision == 1){
                 break;
+            }
             case 3:
                 printf("PreOrder: ");
                 PreOrder(Tree);
                 printf("\n");
+                            printf("\n1.kembali\nMasukkan Pilihan : ");
+            scanf("%d", &decision);
+            if(decision == 1){
                 break;
+            }
             case 4:
                 printf("InOrder: ");
                 InOrder(Tree);
                 printf("\n");
+                            printf("\n1.kembali\nMasukkan Pilihan : ");
+            scanf("%d", &decision);
+            if(decision == 1){
                 break;
+            }
             case 5:
                 printf("PostOrder: ");
                 PostOrder(Tree);
                 printf("\n");
+                            printf("\n1.kembali\nMasukkan Pilihan : ");
+            scanf("%d", &decision);
+            if(decision == 1){
                 break;
+            }
             case 6:
                 if (IsEmpty(Tree)) {
                     printf("Tree masih kosong.\n");
                 } else {
                     // Level Order //
                 }
+                            printf("\n1.kembali\nMasukkan Pilihan : ");
+            scanf("%d", &decision);
+            if(decision == 1){
                 break;
+            }
             case 7:
                 printf("Masukkan info node yang dicari: ");
                 scanf(" %c", &input);
@@ -63,10 +88,18 @@ int main() {
                     printf("Node '%c' ditemukan.\n", input);
                 else
                     printf("Node '%c' tidak ditemukan.\n", input);
+                            printf("\n1.kembali\nMasukkan Pilihan : ");
+            scanf("%d", &decision);
+            if(decision == 1){
                 break;
+            }
             case 8:
                 printf("Jumlah daun (leaf): %d\n", nbDaun(Tree));
+                            printf("\n1.kembali\nMasukkan Pilihan : ");
+            scanf("%d", &decision);
+            if(decision == 1){
                 break;
+            }
             case 9:
                 printf("Masukkan node yang ingin dicari kedalamannya: ");
                 scanf(" %c", &input);
@@ -76,7 +109,11 @@ int main() {
                 } else {
                     printf("Node '%c' tidak ditemukan.\n", input);
                 }
+                            printf("\n1.kembali\nMasukkan Pilihan : ");
+            scanf("%d", &decision);
+            if(decision == 1){
                 break;
+            }
                 case 10:
                 printf("Masukkan node pertama: ");
                 scanf(" %c", &search1);
@@ -94,7 +131,11 @@ int main() {
                     else
                         printf("Kedua node berada di level yang sama (%d)\n", l1);
                 }
+                            printf("\n1.kembali\nMasukkan Pilihan : ");
+            scanf("%d", &decision);
+            if(decision == 1){
                 break;
+            }
             case 11:
                 char yangdikonvert[100];
                 printf("Masukkan string yang mau dikonvert: ");
