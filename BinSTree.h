@@ -6,6 +6,8 @@
 #ifndef _BINTREE_H
 #define _BINTREE_H
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #define true 1
 #define false 0
 #define boolean unsigned char
