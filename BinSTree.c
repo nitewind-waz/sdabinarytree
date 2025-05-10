@@ -140,11 +140,10 @@ void SistemInput (BinTree *P){
 
     for (;;) {
         if ((*P) == Nil) {
-            // Jika pohon masih kosong, buat root
             printf("Masukkan info untuk root: ");
             scanf(" %c", &input);
             *P = Tree(input, Nil, Nil);
-            continue; // kembali ke awal loop untuk input berikutnya
+            continue; 
         }
 
         printf("\nMasukkan node yang ingin ditambahkan anaknya (atau ketik 0 untuk keluar): ");
