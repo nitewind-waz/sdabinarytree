@@ -72,6 +72,7 @@ boolean IsBiner (BinTree P);
 /* P adalah pohon Biner (mempunyai sub pohon kiri dan sub pohon kanan */
 boolean IsEmpty (BinTree P);
 /* Mengirimkan true jika BinTree KOSONG */
+
 /***** Traversal *****/
 void PreOrder (BinTree P);
 /* Traversal PreOrder menggunakan Rekursif */
