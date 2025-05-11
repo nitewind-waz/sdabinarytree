@@ -11,7 +11,7 @@ int main() {
     List Test;
     int selector, decision;
     char input, search1, search2;
-    char morseInput[100], result;
+    char morseInput[100], result, morseKalimat[500],hasilKalimat[200];
 
     
     /* Program */
@@ -20,68 +20,68 @@ int main() {
     while (selector != 13 ){
         printf("\n===== MENU BINARY TREE =====\n");
         printf("1. Insert node\n2. Print Tree\n3. Transversal PreOrder\n4. Transversal InOrder\n5. Transversal PostOrder\n6. Transversal LevelOrder\n");
-        printf("7. Search Node Tree\n8. Jumlah Daun / Leaf\n9. Mencari Kedalaman Node Tree\n10. Membandingkan 2 Node Tree\n11. Char to Morse\n12. Morse to Char\n13. Exit\n");
+        printf("7. Search Node Tree\n8. Jumlah Daun / Leaf\n9. Mencari Kedalaman Node Tree\n10. Membandingkan 2 Node Tree\n11. Char/String to Morse\n12. Morse to Char/String\n13. Exit\n");
         printf("Pilih menu: ");
         scanf(" %d", &selector);
 
         switch (selector) {
             case 1:
                 SistemInput (&Tree);
-                            printf("\n1.kembali\nMasukkan Pilihan : ");
-            scanf("%d", &decision);
-            if(decision == 1){
-                break;
-            }
+                printf("\n1.kembali\nMasukkan Pilihan : ");
+                scanf("%d", &decision);
+                if(decision == 1){
+                    break;
+                }
             case 2:
-              if (IsEmpty(Tree)) {
+                if (IsEmpty(Tree)) {
                     printf("Tree masih kosong.\n");
                 } else {
                     PrintTree(Tree, 0);
 
                 }
-            printf("\n1.kembali\nMasukkan Pilihan : ");
-            scanf("%d", &decision);
-            if(decision == 1){
-                break;
-            }
+                printf("\n1.kembali\nMasukkan Pilihan : ");
+                scanf("%d", &decision);
+                if(decision == 1){
+                    break;
+                }
             case 3:
                 printf("PreOrder: ");
                 PreOrder(Tree);
                 printf("\n");
-            printf("\n1.kembali\nMasukkan Pilihan : ");
-            scanf("%d", &decision);
-            if(decision == 1){
-                break;
-            }
+                printf("\n1.kembali\nMasukkan Pilihan : ");
+                scanf("%d", &decision);
+                if(decision == 1){
+                    break;
+                }
             case 4:
                 printf("InOrder: ");
                 InOrder(Tree);
                 printf("\n");
-            printf("\n1.kembali\nMasukkan Pilihan : ");
-            scanf("%d", &decision);
-            if(decision == 1){
-                break;
-            }
+                printf("\n1.kembali\nMasukkan Pilihan : ");
+                scanf("%d", &decision);
+                if(decision == 1){
+                    break;
+                }
             case 5:
                 printf("PostOrder: ");
                 PostOrder(Tree);
                 printf("\n");
-            printf("\n1.kembali\nMasukkan Pilihan : ");
-            scanf("%d", &decision);
-            if(decision == 1){
-                break;
-            }
+                printf("\n1.kembali\nMasukkan Pilihan : ");
+                scanf("%d", &decision);
+                if(decision == 1){
+                    break;
+                }
             case 6:
                 if (IsEmpty(Tree)) {
                     printf("Tree masih kosong.\n");
                 } else {
-                    // Level Order //
+                    LevelOrder(Tree);
                 }
-            printf("\n1.kembali\nMasukkan Pilihan : ");
-            scanf("%d", &decision);
-            if(decision == 1){
-                break;
-            }
+                printf("\n1.kembali\nMasukkan Pilihan : ");
+                scanf("%d", &decision);
+                if(decision == 1){
+                    break;
+                }
             case 7:
                 printf("Masukkan info node yang dicari: ");
                 scanf(" %c", &input);
@@ -89,18 +89,18 @@ int main() {
                     printf("Node '%c' ditemukan.\n", input);
                 else
                     printf("Node '%c' tidak ditemukan.\n", input);
-            printf("\n1.kembali\nMasukkan Pilihan : ");
-            scanf("%d", &decision);
-            if(decision == 1){
-                break;
-            }
+                printf("\n1.kembali\nMasukkan Pilihan : ");
+                scanf("%d", &decision);
+                if(decision == 1){
+                    break;
+                }
             case 8:
                 printf("Jumlah daun (leaf): %d\n", nbDaun(Tree));
-            printf("\n1.kembali\nMasukkan Pilihan : ");
-            scanf("%d", &decision);
-            if(decision == 1){
-                break;
-            }
+                printf("\n1.kembali\nMasukkan Pilihan : ");
+                scanf("%d", &decision);
+                if(decision == 1){
+                    break;
+                }
             case 9:
                 printf("Masukkan node yang ingin dicari kedalamannya: ");
                 scanf(" %c", &input);
@@ -110,12 +110,12 @@ int main() {
                 } else {
                     printf("Node '%c' tidak ditemukan.\n", input);
                 }
-            printf("\n1.kembali\nMasukkan Pilihan : ");
-            scanf("%d", &decision);
-            if(decision == 1){
-                break;
-            }
-                case 10:
+                printf("\n1.kembali\nMasukkan Pilihan : ");
+                scanf("%d", &decision);
+                if(decision == 1){
+                    break;
+                }
+            case 10:
                 printf("Masukkan node pertama: ");
                 scanf(" %c", &search1);
                 printf("Masukkan node kedua: ");
@@ -132,19 +132,19 @@ int main() {
                     else
                         printf("Kedua node berada di level yang sama (%d)\n", l1);
                 }
-            printf("\n1.kembali\nMasukkan Pilihan : ");
-            scanf("%d", &decision);
-            if(decision == 1){
-                break;
-            }
+                printf("\n1.kembali\nMasukkan Pilihan : ");
+                scanf("%d", &decision);
+                if(decision == 1){
+                    break;
+                }
             case 11:
                 char yangdikonvert[100];
                 printf("Masukkan string yang mau dikonvert: ");
-                scanf("%s", yangdikonvert);  // baca string dari input
-
+                getchar();
+                fgets(yangdikonvert, sizeof(yangdikonvert), stdin);  // baca string dari input
+                yangdikonvert[strcspn(yangdikonvert, "\n")] = '\0';
                 for (int i = 0; yangdikonvert[i] != '\0'; i++) {
                     Test.first = NULL; // reset list sebelum mengisi morse baru
-
                     if (StringToMorse(Tree, yangdikonvert[i], &Test)) {
                         PrintList(Test);
                         printf(" ");
@@ -155,25 +155,26 @@ int main() {
                 getchar(); getchar();
             break;
             case 12:
-                printf("Masukkan kode morse: ");
-                scanf("%s", morseInput);
-                result = MorseToChar(Tree, morseInput);
-                if (result != '?') {
-                    printf("Hasil konversi: %c\n", result);
-                } else {
-                    printf("Kode morse tidak valid.\n");
-                }
+                printf("Masukkan kalimat dalam morse (pisahkan antar huruf dengan spasi, antar kata dengan 3 spasi): ");
+                getchar(); 
+                fgets(morseKalimat, sizeof(morseKalimat), stdin);
+                morseKalimat[strcspn(morseKalimat, "\n")] = '\0'; 
+                MorseToString(Tree, morseKalimat, hasilKalimat);
+                printf("Hasil konversi: %s\n", hasilKalimat);
                 printf("\n1.kembali\nMasukkan Pilihan : ");
                 scanf("%d", &decision);
                 if (decision == 1){
                     break;
                 }
+            case 13:
+            printf("Keluar program.");
+            break;
             default:
                 printf("Menu tidak valid.\n");
+            break;
             return 0;
         }
     }
 
     return 0;
-
 }

@@ -67,3 +67,33 @@ char MorseToChar(BinTree Tree, const char *morse) {
     }
     return current->info;
 }
+
+void MorseToString(BinTree Tree, const char *morseInput, char *output) {
+    char morseLetter[10];
+    int idx = 0, outIdx = 0;
+    int i = 0;
+    int len = strlen(morseInput); // Panjang array input
+    int spaceCount = 0; // Hitungan menekan spasi
+    while ( i <= len) {
+        if (morseInput[i] == ' ' || morseInput[i] == '\0') {
+            if (idx > 0) {  // Jika morseLetter sudah ada isinya
+                morseLetter[idx] = '\0';
+                char letter = MorseToChar(Tree, morseLetter);
+                output[outIdx++] = letter;
+                idx = 0;
+            }
+
+            // Hitung jumlah spasi berturut-turut
+            spaceCount++;
+            if (spaceCount == 3) {
+                output[outIdx++] = ' ';  // Tambahkan spasi antar kata
+                spaceCount = 0;          // Reset
+            }
+        } else {
+            morseLetter[idx++] = morseInput[i];
+            spaceCount = 0;
+        }
+        i++;
+    }
+    output[outIdx] = '\0';  // Akhiri string output
+}

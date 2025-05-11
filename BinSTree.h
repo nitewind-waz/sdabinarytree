@@ -177,7 +177,8 @@ void DeAlokasi (address P);
 /* FS : P dikembalikan ke sistem */
 /* Melakukan dealokasi / pengembalian address P ke system */
 
-
+void LevelOrder(BinTree P);
+void PrintLevel(BinTree P, int currentLevel, int targetLevel);
 void SistemInput (BinTree *P);
 BinTree BuildMorseTree();
 

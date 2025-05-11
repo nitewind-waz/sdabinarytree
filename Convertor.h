@@ -27,3 +27,5 @@ void SearchInTraversal (BinTree P, char oneofinput);
 void PrintList (List L);
 
 char MorseToChar(BinTree Tree, const char *morse);
+
+void MorseToString(BinTree Tree, const char *morseInput, char *output);
